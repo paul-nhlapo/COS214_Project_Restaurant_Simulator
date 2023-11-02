@@ -11,19 +11,19 @@ class MainOrder : public Order{
     public:
         MainOrder(BasicOrder*);
 
-        std::string print();
+        virtual std::string print();
 
-        double getCost();
-        double getTimeToPrep();
-        std::string getDish();
-        std::string getStrategy();
-        std::string getChef();
+        virtual double getCost();
+        virtual double getTimeToPrep();
+        virtual std::string getDish();
+        virtual std::string getStrategy();
+        virtual std::string getChef();
 
-        void setCost(double);
-        void setTimeToPrep(double);
-        void setDish(std::string);
-        void setStrategy(std::string);
-        void setChef(std::string);
+        virtual void setCost(double);
+        virtual void setTimeToPrep(double);
+        virtual void setDish(std::string);
+        virtual void setStrategy(std::string);
+        virtual void setChef(std::string);
 
         protected:
             BasicOrder* basicOrder;

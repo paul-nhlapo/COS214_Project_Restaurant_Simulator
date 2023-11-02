@@ -19,7 +19,7 @@ ProteinDecorator::ProteinDecorator(BasicOrder* bo) : MainOrder(bo){
 
 
 std::string ProteinDecorator::print(){
-    std::string s = "Dish: " + MainOrder::basicOrder->dish + "\nOf type: " + type +  "\nMade by: " + MainOrder::basicOrder->chef + "chef\nBy: " + MainOrder::basicOrder->strategy + 
+    std::string s = "Dish: " + MainOrder::basicOrder->dish + "\nOf type: " + type +  "\nMade by: " + MainOrder::basicOrder->chef + " chef\nBy: " + MainOrder::basicOrder->strategy + 
                     " strategy\nCost: R" + std::to_string(MainOrder::basicOrder->cost) + "\nTime to prepare: " + std::to_string(MainOrder::basicOrder->timeToPrep);
         return s;
 

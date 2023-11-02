@@ -20,7 +20,7 @@ BasicOrder::BasicOrder(std::string d, std::string s, std::string ch){
 
 
 std::string BasicOrder::print(){
-    std::string s = "Dish: " + dish + "\nMade by: " + chef + "chef\nBy: " + strategy + 
+    std::string s = "Dish: " + dish + "\nMade by: " + chef + " chef\nBy: " + strategy + 
                     " strategy\nCost: R" + std::to_string(cost) + "\nTime to prepare: " + std::to_string(timeToPrep);
     return s;
 }

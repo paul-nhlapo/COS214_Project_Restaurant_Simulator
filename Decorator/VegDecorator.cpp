@@ -10,7 +10,7 @@ VegDecorator::VegDecorator(BasicOrder* bo) : MainOrder(bo){
         MainOrder::MainOrder::basicOrder->cost = 70.0;
         MainOrder::MainOrder::basicOrder->timeToPrep = 20.0;
     }
-    else if(MainOrder::MainOrder::basicOrder->dish == "south african"){
+    else if(MainOrder::MainOrder::basicOrder->dish == "south africa"){
         MainOrder::MainOrder::basicOrder->cost = 80.0;
         MainOrder::MainOrder::basicOrder->timeToPrep = 25.0;
     }
@@ -20,7 +20,7 @@ VegDecorator::VegDecorator(BasicOrder* bo) : MainOrder(bo){
 
 
 std::string VegDecorator::print(){
-    std::string s = "Dish: " + MainOrder::basicOrder->dish + " " + type +  "\nMade by: " + MainOrder::basicOrder->chef + "chef\nBy: " + MainOrder::basicOrder->strategy + 
+    std::string s = "Dish: " + MainOrder::basicOrder->dish + " " + type +  "\nMade by: " + MainOrder::basicOrder->chef + " chef\nBy: " + MainOrder::basicOrder->strategy + 
                     " strategy\nCost: R" + std::to_string(MainOrder::basicOrder->cost) + "\nTime to prepare: " + std::to_string(MainOrder::basicOrder->timeToPrep);
                         return s;
 }
