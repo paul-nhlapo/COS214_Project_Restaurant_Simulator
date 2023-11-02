@@ -1,0 +1,53 @@
+**CODING STANDARDS**
+
+- C++ 11
+    - Can use smart pointers etc.
+
+- Try to let functions become to large and complicated
+    - Use helper functions when necessary to improve readabilty and make code simpler
+    - If function is greater than 10 (?) lines, try abstract it out
+     
+
+- Be clear and concise when naming variables AND files/classes
+    - Try not to reuse variable names
+    - For iterators use i, j, k etc. ?
+
+- Avoid use of global variables unless absolutely necessary
+
+- In definition and implementation files:
+    - Standard use of either pragma OR ifndef/define
+
+- Use same makefiles/compilation method
+- Use same Linux distro
+
+- Avoid hardcoding values/variables unless absolutely necessary
+
+- Define all functions in implementation files - avoid inline definitions in definition file for uniformity
+
+- Comment function purpose for all functions (just short description)
+    - If complex implementation try to comment what a line does
+
+- Leave spaces between mathematical operations to make reading clear
+    - eg. (a + b)
+
+- Design small unit tests to make sure a function works as intended before continuing.
+    - Share test files to github repo - Add sep branch?
+
+- Try to enforce low coupling and dependancy as often as possible
+    -Abstract functions where possible
+
+************************************************************************************************************************************
+
+**GIT STANDARDS**
+
+- Master and Stable Branches
+    - Master is branch that all members will merge to after testing
+    - Stable is branch that Master will be pushed to when current build is stable and there aren't any issues on Master
+
+- Each member should have their own branch OR each component should have a branch ??
+
+- Bug Branch
+    -If bug is discovered after merge to master, current master should be merged with Bug branch and then Master should revert
+     previous commit ??
+
+    

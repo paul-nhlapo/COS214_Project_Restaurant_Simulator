@@ -1,0 +1,53 @@
+- Head Chef 
+    - Receives order from waiter.
+    - Has a queue for each food type (starter, main, dessert)
+    - Adds new order to queue
+
+
+- Secondary Chefs (Starter, Main and Dessert)
+    - All add head chef as an Observer
+    - When they are not busy working, their state changes to free
+        - Notifies Head Chef
+
+
+- Head Chef checks which chef notifies him they are free
+    - Pops order from relevant queue and passes it to relevant chef     (Order is passed as a command???) 
+        - Use Chain of Responsibilty
+
+
+- Secondary Chef now starts to prepare meal
+    - Sets state to busy
+
+    ***** If player prepares meal *****
+    *** Clicks button to cook each element? - Use time? - 10secs is enough? *** 
+    EG:
+    ** Meal is steak, potatoes and salad **
+    ** - Meal is cooked in order on order sheet **
+    ** - Cook steak using strategy (Grill in this case) **
+    ** - Cook potatoes using strategy (Boil in this case) **
+    ** - Prepare salad according to strategy (Salad strategy ???) **
+    ** - Prepare sauce/gravy according to strategy (Sauce strategy in this case) **
+
+    - Once all elements are ready pass meal to Head Chef (Pass as a command???)
+    - Sets state to free
+
+
+- Head Chef receives meal to plate
+    - Plates meal
+
+    ***** If player prepares meal *****
+    *** Clicks button to add each element to plate? - Use time? - 2secs is enough? *** 
+    EG:
+    ** - Add steak **
+    ** - Add potatoes **
+    ** - Add sauce/gravy **
+    ** - Add salad **
+    ** - Garnish **
+
+    - Notifies waiter that meal is ready
+
+
+
+- Each meal has variable called table number (?) OR order number (?) to keep track of who ordered it
+- Should there be two types of Secondary Chefs for each category
+    - One for hot and cold meals
