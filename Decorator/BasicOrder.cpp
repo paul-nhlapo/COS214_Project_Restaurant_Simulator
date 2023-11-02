@@ -4,7 +4,9 @@ BasicOrder::BasicOrder(std::string d, std::string s, std::string ch){
     dish = d;
     strategy = s;
     chef = ch;
-
+    cost = 0.1;
+    timeToPrep = 0.1;
+    
     if(chef == "starter"){
         cost = 30.0;
         timeToPrep = 5.0;

@@ -8,7 +8,7 @@
 class ProteinDecorator : public MainOrder{
 
     public:
-        ProteinDecorator(BasicOrder*, std::string);
+        ProteinDecorator(BasicOrder*);
         ~ProteinDecorator();
 
         std::string print();
