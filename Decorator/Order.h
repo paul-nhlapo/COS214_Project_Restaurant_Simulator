@@ -7,7 +7,6 @@
 class Order{
 
     public:
-        virtual ~Order() = 0;
 
         virtual std::string print() = 0;
 

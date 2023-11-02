@@ -9,7 +9,6 @@ class SideDecorator : public MainOrder{
 
     public:
         SideDecorator(BasicOrder*);
-        ~SideDecorator();
 
         std::string print();
 

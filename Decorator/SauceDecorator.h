@@ -9,7 +9,6 @@ class SauceDecorator : public MainOrder{
 
     public:
         SauceDecorator(BasicOrder*);
-        ~SauceDecorator();
 
         std::string print();
 

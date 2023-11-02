@@ -3,13 +3,12 @@
 MainOrder::MainOrder(BasicOrder* bo) : basicOrder(bo){
 }
 
-MainOrder::~MainOrder(){
 
-}
 
 std::string MainOrder::print(){
-    std::string s = "Dish: " + basicOrder->dish + "\nMade by: " + basicOrder->chef + "\nBy: " + basicOrder->strategy + 
+    std::string s = "Dish: " + basicOrder->dish + "\nMade by: " + basicOrder->chef + "chef\nBy: " + basicOrder->strategy + 
                     " strategy\nCost: R" + std::to_string(basicOrder->cost) + "\nTime to prepare: " + std::to_string(basicOrder->timeToPrep);
+    return s;
 }
 
 

@@ -16,14 +16,13 @@ VegDecorator::VegDecorator(BasicOrder* bo) : MainOrder(bo){
     }
 }
 
-VegDecorator::~VegDecorator(){
 
-}
 
 
 std::string VegDecorator::print(){
-    std::string s = "Dish: " + MainOrder::basicOrder->dish + " " + type +  "\nMade by: " + MainOrder::basicOrder->chef + "\nBy: " + MainOrder::basicOrder->strategy + 
+    std::string s = "Dish: " + MainOrder::basicOrder->dish + " " + type +  "\nMade by: " + MainOrder::basicOrder->chef + "chef\nBy: " + MainOrder::basicOrder->strategy + 
                     " strategy\nCost: R" + std::to_string(MainOrder::basicOrder->cost) + "\nTime to prepare: " + std::to_string(MainOrder::basicOrder->timeToPrep);
+                        return s;
 }
 
 

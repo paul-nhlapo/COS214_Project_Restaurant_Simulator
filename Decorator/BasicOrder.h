@@ -9,7 +9,6 @@ class BasicOrder : public Order{
 
     public:
         BasicOrder(std::string, std::string, std::string);
-        ~BasicOrder();
 
         std::string print();
 

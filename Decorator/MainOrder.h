@@ -10,7 +10,6 @@ class MainOrder : public Order{
 
     public:
         MainOrder(BasicOrder*);
-        ~MainOrder();
 
         std::string print();
 

@@ -9,7 +9,6 @@ class VegDecorator : public MainOrder{
 
     public:
         VegDecorator(BasicOrder*);
-        ~VegDecorator();
 
         std::string print();
 
