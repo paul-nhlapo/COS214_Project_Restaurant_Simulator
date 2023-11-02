@@ -6,7 +6,7 @@ BasicOrder::BasicOrder(std::string d, std::string s, std::string ch){
     chef = ch;
     cost = 0.1;
     timeToPrep = 0.1;
-    
+
     if(chef == "starter"){
         cost = 30.0;
         timeToPrep = 5.0;
@@ -24,7 +24,7 @@ BasicOrder::~BasicOrder(){
 
 std::string BasicOrder::print(){
     std::string s = "Dish: " + dish + "\nMade by: " + chef + "\nBy: " + strategy + 
-                    " strategy\nCost: R" + std::toString(cost) + "\nTime to prepare: " + std::toString(timeToPrep);
+                    " strategy\nCost: R" + std::to_string(cost) + "\nTime to prepare: " + std::to_string(timeToPrep);
 }
 
 

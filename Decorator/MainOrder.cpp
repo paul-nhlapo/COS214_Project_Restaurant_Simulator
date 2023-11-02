@@ -9,7 +9,7 @@ MainOrder::~MainOrder(){
 
 std::string MainOrder::print(){
     std::string s = "Dish: " + basicOrder->dish + "\nMade by: " + basicOrder->chef + "\nBy: " + basicOrder->strategy + 
-                    " strategy\nCost: R" + std::toString(basicOrder->cost) + "\nTime to prepare: " + std::toString(basicOrder->timeToPrep);
+                    " strategy\nCost: R" + std::to_string(basicOrder->cost) + "\nTime to prepare: " + std::to_string(basicOrder->timeToPrep);
 }
 
 
