@@ -13,66 +13,65 @@ public:
 class FryStrategy : public PreparationStrategy {
 public:
     void prepare() const override {
-        std::cout << "Frying the food..." << std::endl;
+        std::cout << "Frying the food, ensuring a crispy texture..." << std::endl;
     }
 };
 
 class SaladStrategy : public PreparationStrategy {
 public:
     void prepare() const override {
-        std::cout << "Preparing a salad..." << std::endl;
+        std::cout << "Combining fresh ingredients to prepare a salad..." << std::endl;
     }
 };
 
 class BakeStrategy : public PreparationStrategy {
 public:
     void prepare() const override {
-        std::cout << "Baking the food..." << std::endl;
+        std::cout << "Baking the food, bringing out a homely aroma..." << std::endl;
     }
 };
 
 class BoilStrategy : public PreparationStrategy {
 public:
     void prepare() const override {
-        std::cout << "Baking the food..." << std::endl;
+        std::cout << "Boiling the food, preserving flavors and nutrients..." << std::endl;
     }
 };
 
 class GrillStrategy : public PreparationStrategy {
 public:
     void prepare() const override {
-        std::cout << "Baking the food..." << std::endl;
+        std::cout << "Grilling to perfection, adding those coveted char lines..." << std::endl;
     }
 };
 
 class SushiStrategy : public PreparationStrategy {
 public:
     void prepare() const override {
-        std::cout << "Baking the food..." << std::endl;
+        std::cout << "Crafting sushi with precision and tradition..." << std::endl;
     }
 };
 
 class SimmerStrategy : public PreparationStrategy {
 public:
     void prepare() const override {
-        std::cout << "Baking the food..." << std::endl;
+        std::cout << "Gently simmering to infuse flavors and tenderize..." << std::endl;
     }
 };
 
 class ColdDessertStrategy : public PreparationStrategy {
 public:
     void prepare() const override {
-        std::cout << "Baking the food..." << std::endl;
+        std::cout << "Chilling dessert to set, for a refreshing finale..." << std::endl;
     }
 };
 
 class HotDessertStrategy : public PreparationStrategy {
 public:
     void prepare() const override {
-        std::cout << "Baking the food..." << std::endl;
+        std::cout << "Preparing a warm dessert, perfect for a cozy ending..." << std::endl;
     }
 };
-
 
 // Context Class
 class Chef {
@@ -108,5 +107,3 @@ int main() {
 
     return 0;
 }
-
-
