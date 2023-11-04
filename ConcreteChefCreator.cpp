@@ -14,9 +14,9 @@
 HeadChefCreator::HeadChefCreator()
 {}
 
-Chef* HeadChefCreator::createChef(std::string name)
+Chef* HeadChefCreator::createChef(std::string name, Kitchen* kitchen)
 {
-    Chef* headChef = new HeadChef("Head Chef");                                     //Creates Head Chef Objects
+    Chef* headChef = new HeadChef("Head Chef", kitchen);                                     //Creates Head Chef Objects
     std::cout << "Head Chef Created" << std::endl;                                  //Just for testing/visualisation
     return headChef;
 }
@@ -24,9 +24,9 @@ Chef* HeadChefCreator::createChef(std::string name)
 StarterChefCreator::StarterChefCreator()
 {}
 
-Chef* StarterChefCreator::createChef(std::string name)
+Chef* StarterChefCreator::createChef(std::string name, Kitchen* kitchen)
 {
-    Chef* starterChef = new StarterChef("StarterChef");
+    Chef* starterChef = new StarterChef("StarterChef", kitchen);
     std::cout << "Starter Chef Created" << std::endl;
     return starterChef;
 }
@@ -34,9 +34,9 @@ Chef* StarterChefCreator::createChef(std::string name)
 MainChefCreator::MainChefCreator()
 {}
 
-Chef* MainChefCreator::createChef(std::string name)
+Chef* MainChefCreator::createChef(std::string name, Kitchen* kitchen)
 {
-    Chef* mainChef = new MainChef("MainChef");
+    Chef* mainChef = new MainChef("MainChef", kitchen);
     std::cout << "Main Chef Created" << std::endl;
     return mainChef;
 }
@@ -44,9 +44,9 @@ Chef* MainChefCreator::createChef(std::string name)
 DessertChefCreator::DessertChefCreator()
 {}
 
-Chef* DessertChefCreator::createChef(std::string name)
+Chef* DessertChefCreator::createChef(std::string name, Kitchen* kitchen)
 {
-    Chef* dessertChef = new DessertChef("DessertChef");
+    Chef* dessertChef = new DessertChef("DessertChef", kitchen);
     std::cout << "Dessert Chef Created" << std::endl;
     return dessertChef; 
 }

@@ -6,7 +6,7 @@
 
 #include "MainChef.h"
 
-MainChef::MainChef(std::string name) : Chef(name)
+MainChef::MainChef(std::string name, Kitchen* kitchen) : Chef(name, kitchen)
 {
     this->chefType = "Main Course Chef";
 }
@@ -26,9 +26,10 @@ std::string MainChef::getChefType()
     return this->chefType;
 }
 
+/*
 void MainChef::prepareMeal(std::string mealType)
 {
-        if(mealType == "Main")
+    if(mealType == "Main")
     {
         std::cout << "Main Chef is preparing this meal";
     }
@@ -37,6 +38,21 @@ void MainChef::prepareMeal(std::string mealType)
     {
         std::cout << this->getChefType() << " passing meal on" << std::endl;
         nextChef->prepareMeal(mealType);
+    }
+}
+*/
+
+void MainChef::prepareMeal(Order* order)
+{
+    if(order->getOrderType() == "Main")
+    {
+        std::cout << this->getChefType() <<" is preparing this meal" << std::endl;
+    }
+
+    else
+    {
+        std::cout << this->getChefType() << " passing this order on" << std::endl;
+        nextChef->prepareMeal(order);
     }
 }
 

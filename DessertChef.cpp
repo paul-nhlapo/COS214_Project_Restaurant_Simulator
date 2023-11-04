@@ -6,7 +6,7 @@
 
 #include "DessertChef.h"
 
-DessertChef::DessertChef(std::string name) : Chef(name)
+DessertChef::DessertChef(std::string name, Kitchen* kitchen) : Chef(name, kitchen)
 {
     this->chefType = "Dessert Course Chef";
 }
@@ -26,6 +26,7 @@ std::string DessertChef::getChefType()
     return this->chefType;
 }
 
+/*
 void DessertChef::prepareMeal(std::string mealType)
 {
     if(mealType == "Dessert")
@@ -37,6 +38,21 @@ void DessertChef::prepareMeal(std::string mealType)
     {
         std::cout << this->getChefType() << " passing meal on" << std::endl;
         nextChef->prepareMeal(mealType);
+    }
+}
+*/
+
+void DessertChef::prepareMeal(Order* order)
+{
+    if(order->getOrderType() == "Dessert")
+    {
+        std::cout << this->getChefType() <<" is preparing this meal" << std::endl;
+    }
+
+    else
+    {
+        std::cout << this->getChefType() << " passing this order on" << std::endl;
+        nextChef->prepareMeal(order);
     }
 }
 
