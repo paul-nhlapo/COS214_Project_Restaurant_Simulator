@@ -1,0 +1,6 @@
+Basically, UI is the context, it will have a place Order function, 
+that place order function will call the tables accept(Waiter*) function, 
+which in turn calls the Walter's visit function, which just gets the tables order vector. 
+That's all it needs to do up until this point. Floor is the object structure in the pattern. 
+Staff is the visitor, waiter is the concrete visitor. I think we need to be creating Waiters as
+we create the floor, then when a customer is created, the table is assigned an existing waiter
