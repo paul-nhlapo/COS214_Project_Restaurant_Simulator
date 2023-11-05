@@ -11,7 +11,7 @@ public:
         table->accept(waiter);
     }
     void visitAll(Table* table, std::vector<Table*> vect, HeadWaiter* hw) {
-        table->accept(hw);
+        table->accept(hw, vect);
     }
 };
 
