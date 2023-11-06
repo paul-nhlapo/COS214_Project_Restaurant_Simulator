@@ -118,42 +118,6 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
             starterBuilder->setMainElementPrepStrategy(mainPrepStrategy);
         }
 
-        // std::cout << "Would you like any sides with your meal? (Y/N)" << std::endl
-        //           << std::endl;
-        // char sidesChoice = ' ';
-        // cin >> sidesChoice;
-
-        // starterBuilder->setSideChoice(sidesChoice);
-
-        // if (sidesChoice == 'Y' || sidesChoice == 'y')
-        // {
-        //     std::cout << "What side would you like? :" << std::endl
-        //               << std::endl;
-        //     starterMenu->printSideItemsList();
-        //     int sidesElementChoice;
-        //     cin >> sidesElementChoice;
-
-        //     starterBuilder->setSideElement(sidesElementChoice);
-        // }
-
-        // std::cout << "Would you like a sauce with your meal? (Y/N)" << std::endl
-        //           << std::endl;
-        // char sauceChoice = ' ';
-        // cin >> sauceChoice;
-
-        // starterBuilder->setSauceChoice(sauceChoice);
-
-        // if (sauceChoice == 'Y' || sauceChoice == 'y')
-        // {
-        //     std::cout << "What sauce would you like? :" << std::endl
-        //               << std::endl;
-        //     starterMenu->printSauceItemsList();
-
-        //     int sauceElementChoice;
-        //     cin >> sauceElementChoice;
-
-        //     starterBuilder->setSauceElement(sauceElementChoice);
-        // }
         std::cout << "Would you like any sides with your meal? (Y/N)" << std::endl
                   << std::endl;
         char sidesChoice = ' ';

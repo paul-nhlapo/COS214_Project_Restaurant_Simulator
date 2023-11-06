@@ -66,7 +66,7 @@ void UI::addCustomer()
                 c1->setGroupID();
             }
         }
-        }
+    }
 }
 
 void UI::order()
@@ -86,7 +86,7 @@ void UI::additionLoop()
         customerCount++; // increment the counter each time a customer is added
 
         // if 2 customers have been added, break the loop
-        if (customerCount >= 2)
+        if (customerCount >= 1)
         {
             choice = 2; // set choice to 2 to stop the loop
 
