@@ -21,8 +21,9 @@ void Kitchen::notifyStateChange(Staff* chef)
 }
 
 
-std::vector<Staff*> Kitchen::getListOfStaff(){
-    return this->listOfStaff;
+
+void Kitchen::sendToKitchen(Order_* order, Chef* headChef){
+    headChef->addOrderToQueue(order);
 }
 
 

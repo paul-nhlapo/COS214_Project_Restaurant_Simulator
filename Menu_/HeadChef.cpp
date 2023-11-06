@@ -98,17 +98,20 @@ void HeadChef::addOrderToQueue(Order_ *order) // Main uses this to add new order
     {
         starterQueue.push(order); // Need to see what order is defined as
         // after an order is enqueued he needs to send it along chain after checking if chef is free.
-        std::vector<Staff*> list = this->kitchen.getListOfStaff();
+        // i think its fine because each chef will start off as free
+        prepareMeal(order);
     }
 
     else if (order->getMenuChoice() == "Main")
     {
         mainQueue.push(order);
+        prepareMeal(order);
     }
 
     else if (order->getMenuChoice() == "Dessert")
     {
         dessertQueue.push(order);
+        prepareMeal(order);
     }
 
     else

@@ -16,7 +16,7 @@ Chef::Chef(std::string name, Kitchen* kitchen)                                //
     this->nextChef = NULL;
     currentState = new FreeState();
     this->kitchen = kitchen;
-    // this->kitchen->addChef(this);
+    this->kitchen->addStaff(this);
 }
 
 /*
