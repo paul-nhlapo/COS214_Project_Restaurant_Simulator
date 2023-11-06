@@ -12,7 +12,7 @@ MealBuilder::~MealBuilder() {}
 
 void MealBuilder::setMealType(std::string mealType)
 {
-    std::cout << mealType << "admtfad" ;
+    
     meal->setMealType(mealType);
 }
 
@@ -55,8 +55,8 @@ Meal *MealBuilder::getMeal()
 {
     return this->meal;
     // double check the following
-    delete meal;
-    meal = new Meal();
+    //delete meal;
+   // meal = new Meal();
 }
 
 #endif

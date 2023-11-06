@@ -117,7 +117,7 @@ void Meal::setSauceChoice(std::string sauceChoice)
         
 void Meal::setSauceElement(std::string sauceElement)
 {
-    this->sidesElement = sauceElement;
+    this->sauceElement = sauceElement;
 }
 
 std::string Meal::getMealType()
