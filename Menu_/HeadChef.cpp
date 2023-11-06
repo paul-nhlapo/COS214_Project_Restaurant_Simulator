@@ -18,26 +18,29 @@ void HeadChef::receiveMeal(Meal *meal)
 {      
     if (meal->getMealType() == "Starter")
     {
-        std::cout << "recmeal2 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
+        //std::cout << "recmeal2 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
         //std::cout << "\n ss" << starterMeals.size();
         //starterMeals.push_back(meal);
         //std::cout << "\n" << starterMeals.size();
         
         kitchen->notifyMealReady(meal);
-        
-        std::cout << "\n\nrecmeal33 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
+
     }
 
     else if (meal->getMealType() == "Main")
     {
-        mainMeals.push_back(meal);
+        //mainMeals.push_back(meal);
         // kitchen->notifyMealReady();
+        std::cout << "recmeal2 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
+        kitchen->notifyMealReady(meal);
     }
 
     else
     {
-        dessertMeals.push_back(meal);
+        //dessertMeals.push_back(meal);
         // kitchen->notifyMealReady();
+        std::cout << "recmeal2 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
+        kitchen->notifyMealReady(meal);
     }
 }
 

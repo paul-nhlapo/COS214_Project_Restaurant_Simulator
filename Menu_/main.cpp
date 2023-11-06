@@ -41,12 +41,16 @@ int main()
 
     // Create individual Chefs
     std::cout << "*** Creating Concrete Chefs ***" << std::endl;
+    
     Chef *xheadChef = headChefCreator->createChef("Head Chef", kitchen);
     HeadChef *headChef = dynamic_cast<HeadChef *>(xheadChef);
+
     Chef *xstarterChef = starterChefCreator->createChef("Starter Chef", kitchen);
     StarterChef *starterChef = dynamic_cast<StarterChef *>(xstarterChef);
+
     Chef *xmainChef = mainChefCreator->createChef("Main Chef", kitchen);
     MainChef *mainChef = dynamic_cast<MainChef *>(xmainChef);
+
     Chef *xdessertChef = dessertChefCreator->createChef("Dessert Chef", kitchen);
     DessertChef *dessertChef = dynamic_cast<DessertChef *>(xdessertChef);
 
@@ -265,7 +269,7 @@ int main()
 
     Waiter *waiter1 = new Waiter();
     kitchen->addStaff(waiter1);
-    
+
     waiter1->takeOrder();
     waiter1->printOrders();
 

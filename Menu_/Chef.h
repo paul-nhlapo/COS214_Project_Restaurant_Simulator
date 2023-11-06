@@ -52,6 +52,7 @@ class Chef : public Staff
         ChefState* currentState;                                       //State
         Kitchen* kitchen;                                              //Mediator
         CookingStrategy* cookingStrategy;                                         //Strategy
+        CookingStrategy* sideStrategy;
 };
 
 #endif

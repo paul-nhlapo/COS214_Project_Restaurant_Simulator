@@ -21,6 +21,7 @@ class Meal
         virtual void setMealType(std::string);
         virtual void setMainElement(std::string mainElement);
         virtual void setMainPrepStrategy(std::string mainPrepStrategy);
+        void setSidePrepStrategy(std::string mainPrepStrategy);
         virtual void setSideChoice(std::string sideChoice);
         virtual void setSideElement(std::string side);
         virtual void setSauceChoice(std::string sauceChoice);
@@ -36,7 +37,7 @@ class Meal
         std::string getSauceElement();
         char sidesChoice;
         char sauceChoice;
-        
+
     protected:
         // std::string mainElement;
         // std::string side;

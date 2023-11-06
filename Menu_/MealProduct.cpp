@@ -94,6 +94,11 @@ void Meal::setMainPrepStrategy(std::string mainPrepStrategy)
     this->mainPrepStrategy = mainPrepStrategy;
 }
 
+void Meal::setSidePrepStrategy(std::string sidePrepStrategy)
+{
+    this->sidePrepStrategy = sidePrepStrategy;
+}
+
 void Meal::setSideChoice(std::string sideChoice)
 {
     if(sideChoice == "")

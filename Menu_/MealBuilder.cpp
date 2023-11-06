@@ -38,7 +38,7 @@ void MealBuilder::setSideElement(std::string side)
 
 void MealBuilder::setSideElementPrepStrategy(std::string sidePrepStrategy)
 {
-    meal->setMainPrepStrategy(sidePrepStrategy);
+    meal->setSidePrepStrategy(sidePrepStrategy);
 }
 
 void MealBuilder::setSauceChoice(std::string sauceChoice)
