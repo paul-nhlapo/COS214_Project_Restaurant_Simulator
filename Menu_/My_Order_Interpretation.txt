@@ -1,0 +1,62 @@
+My Order Interpretation:
+
+class Order
+{
+    public:
+        Order();
+        virtual ~Order();
+
+        string getMainElement();
+        string getSide();
+        string getSauce();
+        string getCookingMethod();
+    
+    
+    private:
+        string mainElement;
+        string side;
+        string sauce;
+        string cookingMethod;
+}
+
+Order::Order()
+{
+    mainElement = "";
+    side = "";
+    sauce = "";
+    cookingMethod = "";
+
+}
+
+string Order::getMainElement()
+{
+    return this->mainElement;
+}
+
+string Order::getSide()
+{
+    return this->side;
+}
+
+string Order::getCookingMethod()
+{
+    return this->cookingMethod;
+}
+
+string Order::sauce()
+{
+    return this->sauce;
+}
+
+class StarterOrder : public Order
+{
+    StarterOrder(string mainElement, string cookingMethod, string side, string sauce);
+}
+
+StarterOrder::StarterOrder(string mainElement, string cookingMethod, string side, string sauce)
+{
+    this->mainElement = mainElement;
+    this->cookingMethod = cookingMethod;
+    this->side = side;
+    this->sauce = sauce;
+}
