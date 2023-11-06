@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <limits>
 #include "Table.h"
 #include "OrderDetail.h"
 #include "OrderBuilder.h"
@@ -43,15 +44,21 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
     std::cout << "2. Main" << std::endl;
     std::cout << "3. Dessert" << std::endl;
 
-    int menuChoice;
+    int menuChoice = 0;
     cin >> menuChoice;
 
     while (menuChoice != 1 && menuChoice != 2 && menuChoice != 3)
     {
-        std::cout << "Please enter a valid number" << std::endl;
-        cin >> menuChoice;
-        std::cout << std::endl
-                  << std::endl;
+        if (!(std::cin >> menuChoice))
+        {
+            std::cout << std::endl;
+
+            std::cout << "Please enter a valid number" << std::endl;
+            // clear the error state of cin
+            std::cin.clear();
+            // ignore the bad input
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
     }
 
     if (menuChoice == 1)
@@ -240,6 +247,7 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
         t->order.push_back(dessertBuilder->getOrder());
         t->dessertCount++;
     }
+
     return t->order;
 }
 
