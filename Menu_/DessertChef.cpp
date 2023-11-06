@@ -134,6 +134,10 @@ void DessertChef::setNextChef(Chef *nextChef)
     this->nextChef = nextChef;
 }
 
+Chef* DessertChef::getNextChef(){
+    return nextChef;
+}
+
 void DessertChef::receiveNotification(Staff *senderChef)
 {
 }

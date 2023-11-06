@@ -16,6 +16,8 @@
 #include "MainOrderBuilder.h"
 #include "DessertOrderBuilder.h"
 
+class Chef;
+
 class Waiter : public Staff
 {
     private:
@@ -31,6 +33,8 @@ class Waiter : public Staff
         void takeOrder();
 
         void receiveNotification(Staff* senderChef) {};
+
+        void sendOrders(Chef* headChef);
 
         // vector<Table *> tables;
         std::vector<Order_*> orders;

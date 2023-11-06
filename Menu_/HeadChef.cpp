@@ -17,7 +17,7 @@ void HeadChef::receiveMeal(Meal *meal)
     if (meal->getMealType() == "Starter")
     {
         starterMeals.push_back(meal);
-        // kitchen->notifyMealReady();
+        //kitchen->notifyMealReady();
     }
 
     else if (meal->getMealType() == "Main")
@@ -35,6 +35,10 @@ void HeadChef::receiveMeal(Meal *meal)
 
 void HeadChef::sendOrder()
 {
+}
+
+Chef* HeadChef::getNextChef(){
+    return nextChef;
 }
 
 std::string HeadChef::getChefType()
@@ -96,22 +100,37 @@ void HeadChef::addOrderToQueue(Order_ *order) // Main uses this to add new order
 {
     if (order->getMenuChoice() == "Starter")
     {
-        starterQueue.push(order); // Need to see what order is defined as
+        // starterQueue.push(order); // Need to see what order is defined as
         // after an order is enqueued he needs to send it along chain after checking if chef is free.
         // i think its fine because each chef will start off as free
-        prepareMeal(order);
+        // not fine because there might be duplicats. one being made and one in queue
+        if(nextChef->getCurrentState() == "Free"){
+            prepareMeal(order);
+        }
+        else{
+            starterQueue.push(order); 
+        }
+        
     }
 
     else if (order->getMenuChoice() == "Main")
     {
-        mainQueue.push(order);
-        prepareMeal(order);
+        if(nextChef->getNextChef()->getCurrentState() == "Free"){
+            prepareMeal(order);
+        }
+        else{
+            mainQueue.push(order); 
+        }
     }
 
     else if (order->getMenuChoice() == "Dessert")
     {
-        dessertQueue.push(order);
-        prepareMeal(order);
+        if(nextChef->getNextChef()->getNextChef()->getCurrentState() == "Free"){
+            prepareMeal(order);
+        }
+        else{
+            dessertQueue.push(order); 
+        }
     }
 
     else

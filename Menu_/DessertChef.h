@@ -23,6 +23,7 @@ public:
     // void prepareMeal(std::string mealType);                 //CoR HANDLE method
     void prepareMeal(Order_ *order);
     void setNextChef(Chef *nextChef); // CoR setNext method
+    Chef* getNextChef();
 
     void receiveNotification(Chef *senderChef){};
     void setHeadChef(HeadChef *headChef); // Needs to be declared in MAIN ??

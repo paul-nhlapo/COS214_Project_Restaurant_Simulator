@@ -127,6 +127,10 @@ void StarterChef::setNextChef(Chef *nextChef)
     this->nextChef = nextChef;
 }
 
+Chef* StarterChef::getNextChef(){
+    return nextChef;
+}
+
 void StarterChef::receiveNotification(Staff *senderChef)
 {
 }

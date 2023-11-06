@@ -16,6 +16,9 @@
 #include "MainMenu.h"
 #include "DessertMenu.h"
 
+#include "Staff.h"
+#include "Waiter.h"
+
 using namespace std;
 
 int main()
@@ -103,6 +106,7 @@ int main()
               << std::endl;
 
     // Testing Menu and Order
+    /*
     Menu *starterMenu = new StarterMenu();
     Menu *mainMenu = new MainMenu();
     Menu *dessertMenu = new DessertMenu();
@@ -252,6 +256,16 @@ int main()
             int sidesElementChoice;
             cin >> sidesElementChoice;
         }
+    }
+*/
+
+    Waiter* waiter1 = new Waiter();
+
+    waiter1->takeOrder();
+    waiter1->printOrders();
+    
+    for(int i=0; i<waiter1->orders.size(); i++){
+        kitchen->sendToKitchen(waiter1->orders[i] , headChef);
     }
 
     std::cout << std::endl

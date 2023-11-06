@@ -30,6 +30,7 @@ class Chef : public Staff
         //virtual void prepareMeal(std::string mealType);               //CoR HANDLE method
         virtual void prepareMeal(Order_* order);
         virtual void setNextChef(Chef* nextChef) = 0;                   //CoR setNext method
+        virtual Chef* getNextChef() = 0; 
 
         virtual void setChefState(ChefState* chefState);                //Set new Chef State
         virtual void changeChefState();                                 //Change Chef State

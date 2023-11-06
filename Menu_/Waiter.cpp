@@ -449,8 +449,8 @@ void Waiter::printOrders()
     cout << "Waiter's orders:" << endl;
     for (Order_ *order : orders)
     {
-        cout << "Main Element: " << order->mainElement << " mainPrepStrategy:  " << order->mainPrepStrategy << " sauceChoice: " << order->sauceElement << " sidesChoice: " << order->sidesElement << endl;
+        cout << "Main Element: " << order->getMainElement() << " mainPrepStrategy:  " << order->mainPrepStrategy  << " GETMAINPREPSTARTR:  " << order->getMainPrepStrategy() << " sauceChoice: " << order->sauceElement << " sidesChoice: " << order->sidesElement << endl;
     }
+
 }
 
-//after waiter prints orders he will send it to the kitchen

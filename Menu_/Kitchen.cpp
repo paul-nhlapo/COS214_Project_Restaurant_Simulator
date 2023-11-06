@@ -21,7 +21,6 @@ void Kitchen::notifyStateChange(Staff* chef)
 }
 
 
-
 void Kitchen::sendToKitchen(Order_* order, Chef* headChef){
     headChef->addOrderToQueue(order);
 }
