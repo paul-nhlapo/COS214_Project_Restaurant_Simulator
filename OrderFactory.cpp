@@ -44,20 +44,40 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
     std::cout << "2. Main" << std::endl;
     std::cout << "3. Dessert" << std::endl;
 
+    // int menuChoice = 0;
+    // cin >> menuChoice;
+
+    // while (menuChoice != 1 && menuChoice != 2 && menuChoice != 3)
+    // {
+    //     if (!(std::cin >> menuChoice))
+    //     {
+    //         std::cout << std::endl;
+
+    //         std::cout << "Please enter a valid number" << std::endl;
+    //         // clear the error state of cin
+    //         std::cin.clear();
+    //         // ignore the bad input
+    //         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    //     }
+    // }
     int menuChoice = 0;
-    cin >> menuChoice;
 
-    while (menuChoice != 1 && menuChoice != 2 && menuChoice != 3)
+    while (true)
     {
-        if (!(std::cin >> menuChoice))
-        {
-            std::cout << std::endl;
+        // std::cout << "Please enter a number between 1 and 3: ";
+        std::cin >> menuChoice;
 
-            std::cout << "Please enter a valid number" << std::endl;
+        if (!std::cin || menuChoice < 1 || menuChoice > 3)
+        {
+            std::cout << "Invalid input. Please enter a valid number between 1 and 3." << std::endl;
             // clear the error state of cin
             std::cin.clear();
             // ignore the bad input
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        else
+        {
+            break; // exit the loop if valid input is received
         }
     }
 
@@ -74,7 +94,22 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
         std::cout << std::endl;
 
         starterBuilder->setMainElement(starterMainElement);
-
+        while (true)
+        {
+            std::cin >> starterMainElement;
+            if (!std::cin || starterMainElement < 1 || starterMainElement > 10)
+            {
+                std::cout << "Invalid input. Please enter a valid number between 1 and 10." << std::endl;
+                // clear the error state of cin
+                std::cin.clear();
+                // ignore the bad input
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+            else
+            {
+                break; // exit the loop if valid input is received
+            }
+        }
         if (starterMainElement == 1 || starterMainElement == 6 || starterMainElement == 9)
         {
             starterMenu->printMainElementStrategyList(starterMainElement);
@@ -83,10 +118,61 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
             starterBuilder->setMainElementPrepStrategy(mainPrepStrategy);
         }
 
+        // std::cout << "Would you like any sides with your meal? (Y/N)" << std::endl
+        //           << std::endl;
+        // char sidesChoice = ' ';
+        // cin >> sidesChoice;
+
+        // starterBuilder->setSideChoice(sidesChoice);
+
+        // if (sidesChoice == 'Y' || sidesChoice == 'y')
+        // {
+        //     std::cout << "What side would you like? :" << std::endl
+        //               << std::endl;
+        //     starterMenu->printSideItemsList();
+        //     int sidesElementChoice;
+        //     cin >> sidesElementChoice;
+
+        //     starterBuilder->setSideElement(sidesElementChoice);
+        // }
+
+        // std::cout << "Would you like a sauce with your meal? (Y/N)" << std::endl
+        //           << std::endl;
+        // char sauceChoice = ' ';
+        // cin >> sauceChoice;
+
+        // starterBuilder->setSauceChoice(sauceChoice);
+
+        // if (sauceChoice == 'Y' || sauceChoice == 'y')
+        // {
+        //     std::cout << "What sauce would you like? :" << std::endl
+        //               << std::endl;
+        //     starterMenu->printSauceItemsList();
+
+        //     int sauceElementChoice;
+        //     cin >> sauceElementChoice;
+
+        //     starterBuilder->setSauceElement(sauceElementChoice);
+        // }
         std::cout << "Would you like any sides with your meal? (Y/N)" << std::endl
                   << std::endl;
         char sidesChoice = ' ';
-        cin >> sidesChoice;
+        while (true)
+        {
+            std::cin >> sidesChoice;
+            if (!std::cin || (sidesChoice != 'Y' && sidesChoice != 'y' && sidesChoice != 'N' && sidesChoice != 'n'))
+            {
+                std::cout << "Invalid input. Please enter Y or N." << std::endl;
+                // clear the error state of cin
+                std::cin.clear();
+                // ignore the bad input
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+            else
+            {
+                break; // exit the loop if valid input is received
+            }
+        }
 
         starterBuilder->setSideChoice(sidesChoice);
 
@@ -97,14 +183,32 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
             starterMenu->printSideItemsList();
             int sidesElementChoice;
             cin >> sidesElementChoice;
-
             starterBuilder->setSideElement(sidesElementChoice);
+        }
+        else
+        {
+            std::cout << "No sides will be added to your order." << std::endl;
         }
 
         std::cout << "Would you like a sauce with your meal? (Y/N)" << std::endl
                   << std::endl;
         char sauceChoice = ' ';
-        cin >> sauceChoice;
+        while (true)
+        {
+            std::cin >> sauceChoice;
+            if (!std::cin || (sauceChoice != 'Y' && sauceChoice != 'y' && sauceChoice != 'N' && sauceChoice != 'n'))
+            {
+                std::cout << "Invalid input. Please enter Y or N." << std::endl;
+                // clear the error state of cin
+                std::cin.clear();
+                // ignore the bad input
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+            else
+            {
+                break; // exit the loop if valid input is received
+            }
+        }
 
         starterBuilder->setSauceChoice(sauceChoice);
 
@@ -113,11 +217,13 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
             std::cout << "What sauce would you like? :" << std::endl
                       << std::endl;
             starterMenu->printSauceItemsList();
-
             int sauceElementChoice;
             cin >> sauceElementChoice;
-
             starterBuilder->setSauceElement(sauceElementChoice);
+        }
+        else
+        {
+            std::cout << "No sauce will be added to your order." << std::endl;
         }
         starterBuilder->getOrder()->chefChoice = menuChoice;
         starterBuilder->getOrder()->tableNO = t->tableID;

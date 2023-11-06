@@ -1,6 +1,7 @@
 #include "concreteCommand.h"
 #include <string>
 #include <vector>
+#include <limits>
 using namespace std;
 
 concreteCommand::concreteCommand::concreteCommand(maitreD *md, Floor *f, customerFactory *cf, OrderFactory *of)
@@ -40,16 +41,50 @@ void concreteCommand::seatCustomer(Customer *c)
     cout << "Y or N";
     cout << endl;
     char response;
-    cin >> response;
+    while (true) // loop until valid input is received
+    {
+        cin >> response;
+        if (response == 'y' || response == 'Y' || response == 'n' || response == 'N')
+            break; // exit the loop if valid input is received
+        else
+        {
+            cout << "Invalid input. Please enter" << endl;
+            cout << " Y or N: " << endl;
+            cin.clear();                                         // clear the error flag on cin
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard the rest of the line
+        }
+    }
     if (response == 'y' || response == 'Y')
     {
         int _x;
         int _y;
         cout << "Choose your location: " << endl;
         cout << "Row: 1, 2, 3, 4: " << endl;
-        cin >> _x;
+        while (true) // loop until valid input is received
+        {
+            cin >> _x;
+            if (_x >= 1 && _x <= 4)
+                break; // exit the loop if valid input is received
+            else
+            {
+                cout << "Invalid input.\nPlease enter a number between 1 and 4:\n";
+                cin.clear();                                                   // clear the error flag on cin
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
+            }
+        }
         cout << "Isle: 1, 2, 3, 4: " << endl;
-        cin >> _y;
+        while (true) // loop until valid input is received
+        {
+            cin >> _y;
+            if (_y >= 1 && _y <= 4)
+                break; // exit the loop if valid input is received
+            else
+            {
+                cout << "Invalid input. \nPlease enter a number between 1 and 4:\n ";
+                cin.clear();                                                   // clear the error flag on cin
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
+            }
+        }
         c->makeReservation(_x - 1, _y - 1, md);
         md->seat(c);
     }

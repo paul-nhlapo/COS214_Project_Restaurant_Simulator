@@ -66,13 +66,7 @@ void UI::addCustomer()
                 c1->setGroupID();
             }
         }
-        else
-        {
-            cout << "\033[1;31mInvalid input, moving forward as single. You have been auto-assigned a table\033[0m" << endl;
-            Customer *single = c1->produceCustomer('!');
-            // c1->seatCustomer(single);
         }
-    }
 }
 
 void UI::order()
@@ -82,21 +76,31 @@ void UI::order()
 
 void UI::additionLoop()
 {
+
     int choice = 1;
+    int customerCount = 0; // add a counter for the number of customers
     while (choice == 1)
     {
         addCustomer();
         this->mainFloor->printFloor();
+        customerCount++; // increment the counter each time a customer is added
 
-        std::cout << "Would you like to add another customer? 1 for yes, 2 for no: " << endl;
-        if (!(std::cin >> choice) || (choice != 1 && choice != 2))
+        // if 2 customers have been added, break the loop
+        if (customerCount >= 2)
         {
-            // clear the error state of cin
-            std::cin.clear();
-            // ignore the bad input
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input. Defaulting to no." << std::endl;
-            choice = 0; // set default value
+            choice = 2; // set choice to 2 to stop the loop
+
+            std::cout << "Would you like to add another customer? 1 for yes, 2 for no: " << endl;
+            if (!(std::cin >> choice) || (choice != 1 && choice != 2))
+            {
+                // clear the error state of cin
+                std::cin.clear();
+                // ignore the bad input
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Defaulting to no." << std::endl;
+                choice = 2; // set default value
+            }
+            break; // exit the loop
         }
     }
 
