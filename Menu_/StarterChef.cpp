@@ -41,7 +41,7 @@ void StarterChef::prepareMeal(Order_ *order)
     if (order->getMenuChoice() == "Starter")
     {
         this->changeChefState();
-        // std::cout << this->getChefType() <<" is preparing this meal" << std::endl;
+         std::cout << order->getMainPrepStrategy() <<" is preparing this meal" << std::endl;
 
         // Strategies
         if (order->getMainPrepStrategy() == "Grilled")
