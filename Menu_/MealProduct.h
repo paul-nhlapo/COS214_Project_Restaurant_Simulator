@@ -34,7 +34,9 @@ class Meal
         std::string getSidesElement();
         char getSauceChoice();
         std::string getSauceElement();
-
+        char sidesChoice;
+        char sauceChoice;
+        
     protected:
         // std::string mainElement;
         // std::string side;
@@ -47,9 +49,9 @@ class Meal
         std::string mainElement;
         std::string mainPrepStrategy;
         std::string sidePrepStrategy;
-        char sidesChoice;
+        
         std::string sidesElement;
-        char sauceChoice;
+        
         std::string sauceElement;
 };
 #endif

@@ -454,3 +454,11 @@ void Waiter::printOrders()
 
 }
 
+ void Waiter::deliverMeal(Meal* m){
+    std::cout << "Waiter says that a meal is ready:\n";
+    std::cout << "Main element : " << m->getMainElement() << "\n";
+        std::cout << "Side Element " << m->getSidesElement() << "\n";
+        std::cout << "main prep strategy " << m->getMainPrepStrategy() << "\n";
+        std::cout << "sauce element " << m->getSauceElement() << "\n";
+        std::cout << "meal type " << m->getMealType() << "\n";
+ }

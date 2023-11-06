@@ -11,7 +11,7 @@
 HeadChef::HeadChef(std::string name, Kitchen *kitchen) : Chef(name, kitchen)
 {
     this->chefType = "Head Chef";
-    starterMeals = new std::vector<Meal*>();
+    
 }
 
 void HeadChef::receiveMeal(Meal *meal)
@@ -20,9 +20,12 @@ void HeadChef::receiveMeal(Meal *meal)
     {
         std::cout << "recmeal2 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
         //std::cout << "\n ss" << starterMeals.size();
-        starterMeals->push_back(meal);
+        //starterMeals.push_back(meal);
         //std::cout << "\n" << starterMeals.size();
-        //kitchen->notifyMealReady();
+        
+        kitchen->notifyMealReady(meal);
+        
+        std::cout << "\n\nrecmeal33 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
     }
 
     else if (meal->getMealType() == "Main")

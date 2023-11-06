@@ -10,6 +10,7 @@
 #include "StarterMenu.h"
 #include "MainMenu.h"
 #include "DessertMenu.h"
+#include "MealProduct.h"
 
 #include "OrderBuilder.h"
 #include "StarterOrderBuilder.h"
@@ -35,6 +36,8 @@ class Waiter : public Staff
         void receiveNotification(Staff* senderChef) {};
 
         void sendOrders(Chef* headChef);
+
+        void deliverMeal(Meal* m);
 
         // vector<Table *> tables;
         std::vector<Order_*> orders;

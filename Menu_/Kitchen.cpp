@@ -25,5 +25,16 @@ void Kitchen::sendToKitchen(Order_* order, Chef* headChef){
     headChef->addOrderToQueue(order);
 }
 
+void Kitchen::notifyMealReady(Meal* m){
+    std::cout << "adsfasdf";
+    for (Staff* staff : listOfStaff) {
+    // Try to cast the pointer to a Waiter pointer. If successful, it's a Waiter object.
+    if (Waiter* waiter = dynamic_cast<Waiter*>(staff)) {
+        waiter->deliverMeal(m);
+        
+    }
+}
+}
+
 
 #endif

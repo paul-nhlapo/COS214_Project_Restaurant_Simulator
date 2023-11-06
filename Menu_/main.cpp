@@ -41,12 +41,16 @@ int main()
 
     // Create individual Chefs
     std::cout << "*** Creating Concrete Chefs ***" << std::endl;
-    Chef *headChef = headChefCreator->createChef("Head Chef", kitchen);
-    Chef *starterChef = starterChefCreator->createChef("Starter Chef", kitchen);
-    Chef *mainChef = mainChefCreator->createChef("Main Chef", kitchen);
-    Chef *dessertChef = dessertChefCreator->createChef("Dessert Chef", kitchen);
+    Chef *xheadChef = headChefCreator->createChef("Head Chef", kitchen);
+    HeadChef *headChef = dynamic_cast<HeadChef *>(xheadChef);
+    Chef *xstarterChef = starterChefCreator->createChef("Starter Chef", kitchen);
+    StarterChef *starterChef = dynamic_cast<StarterChef *>(xstarterChef);
+    Chef *xmainChef = mainChefCreator->createChef("Main Chef", kitchen);
+    MainChef *mainChef = dynamic_cast<MainChef *>(xmainChef);
+    Chef *xdessertChef = dessertChefCreator->createChef("Dessert Chef", kitchen);
+    DessertChef *dessertChef = dynamic_cast<DessertChef *>(xdessertChef);
 
-    
+    starterChef->headChef = headChef;
 
     std::cout << "*** Concrete Chefs Created ***" << std::endl
               << std::endl;
@@ -259,13 +263,15 @@ int main()
     }
 */
 
-    Waiter* waiter1 = new Waiter();
-
+    Waiter *waiter1 = new Waiter();
+    kitchen->addStaff(waiter1);
+    
     waiter1->takeOrder();
     waiter1->printOrders();
-    
-    for(int i=0; i<waiter1->orders.size(); i++){
-        kitchen->sendToKitchen(waiter1->orders[i] , headChef);
+
+    for (int i = 0; i < waiter1->orders.size(); i++)
+    {
+        kitchen->sendToKitchen(waiter1->orders[i], headChef);
     }
 
     std::cout << std::endl

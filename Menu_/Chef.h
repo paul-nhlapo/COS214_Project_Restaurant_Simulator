@@ -12,8 +12,9 @@
 #include <iostream>
 #include "SimpleOrder.h"
 #include "Staff.h"
+#include "Kitchen.h"
 class ChefState;
-class Kitchen;
+//class Kitchen;
 class CookingStrategy;
 class Order_;
 
