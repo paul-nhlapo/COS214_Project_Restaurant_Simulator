@@ -40,7 +40,7 @@ private:
     std::queue<Order_ *> dessertQueue;
 
     // Vectors to hold different meals
-    std::vector<Meal *> starterMeals;
+    std::vector<Meal*>* starterMeals;
     std::vector<Meal *> mainMeals;
     std::vector<Meal *> dessertMeals;
 };
