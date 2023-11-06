@@ -55,7 +55,7 @@ void Menu::printMainElementStrategyList(int selectedMainElement)
     }
 }
 
-std::string Menu::printSideItemsList()
+void Menu::printSideItemsList()
 {
     for (int i = 0; i < sidesItems.size(); i++)
     {
@@ -64,7 +64,7 @@ std::string Menu::printSideItemsList()
     }
 }
 
-std::string Menu::printSauceItemsList()
+void Menu::printSauceItemsList()
 {
     for(int i = 0; i < sauceItems.size(); i++)
     {

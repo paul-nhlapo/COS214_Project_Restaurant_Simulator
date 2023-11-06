@@ -41,7 +41,7 @@ void StarterChef::prepareMeal(Order_ *order)
     if (order->getMenuChoice() == "Starter")
     {
         this->changeChefState();
-         std::cout << order->getMainPrepStrategy() <<" is preparing this meal" << std::endl;
+         std::cout << order->getMainPrepStrategy() <<" is prep strat " << order->getMenuChoice()<< std::endl;
 
         // Strategies
         if (order->getMainPrepStrategy() == "Grilled")
@@ -88,29 +88,34 @@ void StarterChef::prepareMeal(Order_ *order)
             this->cookingStrategy = new NoCook();
         else
         {
-            std::cout << "Invalid cooking method. Cannot prepare meal." << std::endl;
+            std::cout << "Invalid side cooking method. Cannot prepare side." << std::endl;
             return;
         }
+         std::cout << order->getMainPrepStrategy() <<" is prep strat " << order->getMenuChoice()<< std::endl;
 
         // Builder
         MealBuilder *mealBuilder = new MealBuilder();
+         std::cout << order->getMainPrepStrategy() <<" is prep strat " << order->getMenuChoice()<< std::endl;
 
-        mealBuilder->setMealType(order->getMenuChoice()); // Set Meal Type
-
+        mealBuilder->setMealType("Starter"); // Set Meal Type
+        std::cout << "\naaa2 \n";
         mealBuilder->setMainElement(order->getMainElement());                                             // Set Main Element
         mealBuilder->setMainElementPrepStrategy(cookingStrategy->cookMeal(order->getMainPrepStrategy())); // Set Main Cook Strat
-
+std::cout << "aaa3 \n";
         mealBuilder->setSideChoice(order->getSidesElement());                                             // Set Side Choice
         mealBuilder->setSideElement(order->getSidesElement());                                            // Set Side Element
         mealBuilder->setSideElementPrepStrategy(cookingStrategy->cookMeal(order->getSidePrepStrategy())); // Set Side Cook Strat
-
+std::cout << "aaa4 \n";
         mealBuilder->setSauceChoice(order->getSauceElement());  // Set Sauce Choice
         mealBuilder->setSauceElement(order->getSauceElement()); // Set Sauce Element
-
+std::cout << "aaa5 \n";
         Meal *meal = mealBuilder->getMeal(); // Return Meal
         // set the table no.
 
         // meal->printMeal();
+
+                std::cout << "aaa \n";
+
 
         sendMeal(meal);
     }

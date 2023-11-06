@@ -19,8 +19,8 @@ class Menu
         virtual void printMainElementList();
         virtual void printMainElementStrategyList(int selectedMainElement);
 
-        virtual std::string printSideItemsList();
-        virtual std::string printSauceItemsList();
+        virtual void printSideItemsList();
+        virtual void printSauceItemsList();
 
         struct ItemDetails
         {

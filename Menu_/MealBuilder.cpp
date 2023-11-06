@@ -5,12 +5,14 @@
 
 MealBuilder::MealBuilder()
 {
+    meal = new Meal();
 }
 
 MealBuilder::~MealBuilder() {}
 
 void MealBuilder::setMealType(std::string mealType)
 {
+    std::cout << mealType << "admtfad" ;
     meal->setMealType(mealType);
 }
 
@@ -52,6 +54,9 @@ void MealBuilder::setSauceElement(std::string sauce)
 Meal *MealBuilder::getMeal()
 {
     return this->meal;
+    // double check the following
+    delete meal;
+    meal = new Meal();
 }
 
 #endif
