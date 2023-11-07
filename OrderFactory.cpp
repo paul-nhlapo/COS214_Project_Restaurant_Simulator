@@ -15,6 +15,7 @@
 #include "StarterMenu.h"
 #include "MainMenu.h"
 #include "DessertMenu.h"
+#include <limits>
 using namespace std;
 
 // OrderFactory::
@@ -37,27 +38,56 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
     std::cout << "2. Main" << std::endl;
     std::cout << "3. Dessert" << std::endl;
 
-    int menuChoice;
-    cin >> menuChoice;
+    // int menuChoice;
+    // // cin >> menuChoice;
 
-    while (menuChoice != 1 && menuChoice != 2 && menuChoice != 3)
+    // while (menuChoice != 1 && menuChoice != 2 && menuChoice != 3)
+    // {
+    //     std::cout << "Please enter a valid number" << std::endl;
+    //     cin >> menuChoice;
+    //     std::cout << std::endl
+    //               << std::endl;
+    // }
+    int menuChoice;
+    while (!(std::cin >> menuChoice) || (menuChoice != 1 && menuChoice != 2 && menuChoice != 3))
     {
-        std::cout << "Please enter a valid number" << std::endl;
-        cin >> menuChoice;
-        std::cout << std::endl
-                  << std::endl;
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Please enter a valid number (1, 2, or 3)" << std::endl;
     }
 
     if (menuChoice == 1)
     {
         OrderBuilder *starterBuilder = new StarterOrderBuilder();
 
+        // std::cout << "What would you like for your starter? :" << std::endl
+        //           << std::endl;
+        // starterMenu->printMainElementList();
+
+        // int starterMainElement;
+        // cin >> starterMainElement;
+        // std::cout << std::endl;
+
+        // starterBuilder->setMainElement(starterMainElement);
+
+        // if (starterMainElement == 1 || starterMainElement == 6 || starterMainElement == 9)
+        // {
+        //     starterMenu->printMainElementStrategyList(starterMainElement);
+        //     int mainPrepStrategy;
+        //     cin >> mainPrepStrategy;
+        //     starterBuilder->setMainElementPrepStrategy(mainPrepStrategy);
+        // }
         std::cout << "What would you like for your starter? :" << std::endl
                   << std::endl;
         starterMenu->printMainElementList();
 
         int starterMainElement;
-        cin >> starterMainElement;
+        while (!(std::cin >> starterMainElement) || (starterMainElement < 1 || starterMainElement > 10))
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input. Please enter a number between 1 and 10: " << std::endl;
+        }
         std::cout << std::endl;
 
         starterBuilder->setMainElement(starterMainElement);
@@ -66,7 +96,12 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
         {
             starterMenu->printMainElementStrategyList(starterMainElement);
             int mainPrepStrategy;
-            cin >> mainPrepStrategy;
+            while (!(std::cin >> mainPrepStrategy) || (mainPrepStrategy < 1 || mainPrepStrategy > 10))
+            {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Please enter a number between 1 and 10: " << std::endl;
+            }
             starterBuilder->setMainElementPrepStrategy(mainPrepStrategy);
         }
 
@@ -117,12 +152,34 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
     {
         OrderBuilder *mainBuilder = new MainOrderBuilder();
 
+        // std::cout << "What would you like for your main? :" << std::endl
+        //           << std::endl;
+        // mainMenu->printMainElementList();
+
+        // int mainMainElement;
+        // cin >> mainMainElement;
+        // std::cout << std::endl;
+
+        // mainBuilder->setMainElement(mainMainElement);
+
+        // if (mainMainElement == 1 || mainMainElement == 4 || mainMainElement == 6 || mainMainElement == 8)
+        // {
+        //     mainMenu->printMainElementStrategyList(mainMainElement);
+        //     int mainPrepStrategy;
+        //     cin >> mainPrepStrategy;
+        //     mainBuilder->setMainElementPrepStrategy(mainPrepStrategy);
+        // } // else mainprepstrat = 1
         std::cout << "What would you like for your main? :" << std::endl
                   << std::endl;
         mainMenu->printMainElementList();
 
         int mainMainElement;
-        cin >> mainMainElement;
+        while (!(std::cin >> mainMainElement) || (mainMainElement < 1 || mainMainElement > 10))
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input. Please enter a number between 1 and 10: " << std::endl;
+        }
         std::cout << std::endl;
 
         mainBuilder->setMainElement(mainMainElement);
@@ -131,14 +188,32 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
         {
             mainMenu->printMainElementStrategyList(mainMainElement);
             int mainPrepStrategy;
-            cin >> mainPrepStrategy;
+            while (!(std::cin >> mainPrepStrategy) || (mainPrepStrategy < 1 || mainPrepStrategy <= 8))
+            {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Please enter a number between 1 and 8: " << std::endl;
+            }
             mainBuilder->setMainElementPrepStrategy(mainPrepStrategy);
-        } // else mainprepstrat = 1
+        }
 
-        std::cout << "Would you like any sides with your meal? (Y/N)" << std::endl
-                  << std::endl;
+        // std::cout << "Would you like any sides with your meal? (Y/N)" << std::endl
+        //           << std::endl;
+        // char sidesChoice = ' ';
+        // cin >> sidesChoice;
         char sidesChoice = ' ';
-        cin >> sidesChoice;
+        do
+        {
+            std::cout << "Would you like any sides with your meal? (Y/N)" << std::endl
+                      << std::endl;
+            cin >> sidesChoice;
+            if (sidesChoice != 'Y' && sidesChoice != 'y' && sidesChoice != 'N' && sidesChoice != 'n')
+            {
+                std::cout << "Invalid choice. Please enter Y or N." << std::endl;
+                cin.clear();                                                   // clear the error flag
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
+            }
+        } while (sidesChoice != 'Y' && sidesChoice != 'y' && sidesChoice != 'N' && sidesChoice != 'n');
 
         mainBuilder->setSideChoice(sidesChoice);
 
@@ -154,10 +229,23 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
             mainBuilder->setSideElement(sidesElementChoice);
         }
 
-        std::cout << "Would you like a sauce with your meal? (Y/N)" << std::endl
-                  << std::endl;
+        // std::cout << "Would you like a sauce with your meal? (Y/N)" << std::endl
+        //           << std::endl;
+        // char sauceChoice = ' ';
+        // cin >> sauceChoice;
         char sauceChoice = ' ';
-        cin >> sauceChoice;
+        do
+        {
+            std::cout << "Would you like a sauce with your meal? (Y/N)" << std::endl
+                      << std::endl;
+            cin >> sauceChoice;
+            if (sauceChoice != 'Y' && sauceChoice != 'y' && sauceChoice != 'N' && sauceChoice != 'n')
+            {
+                std::cout << "Invalid choice. Please enter Y or N." << std::endl;
+                cin.clear();                                                   // clear the error flag
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
+            }
+        } while (sauceChoice != 'Y' && sauceChoice != 'y' && sauceChoice != 'N' && sauceChoice != 'n');
 
         mainBuilder->setSauceChoice(sauceChoice);
 
@@ -180,6 +268,17 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
 
     else if (menuChoice == 3)
     {
+        // OrderBuilder *dessertBuilder = new DessertOrderBuilder();
+
+        // std::cout << "What would you like for your dessert? :" << std::endl
+        //           << std::endl;
+        // dessertMenu->printMainElementList();
+
+        // int dessertMainElement;
+        // cin >> dessertMainElement;
+        // std::cout << std::endl;
+
+        // dessertBuilder->setMainElement(dessertMainElement);
         OrderBuilder *dessertBuilder = new DessertOrderBuilder();
 
         std::cout << "What would you like for your dessert? :" << std::endl
@@ -187,45 +286,115 @@ vector<Order_ *> OrderFactory::getOrder(Table *t)
         dessertMenu->printMainElementList();
 
         int dessertMainElement;
-        cin >> dessertMainElement;
+        do
+        {
+            cin >> dessertMainElement;
+            if (dessertMainElement < 1 || dessertMainElement > 5)
+            {
+                std::cout << "Invalid choice. Please choose a number between 1 and 5." << std::endl;
+                cin.clear();                                                   // clear the error flag
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
+            }
+        } while (dessertMainElement < 1 || dessertMainElement > 5);
+
         std::cout << std::endl;
 
         dessertBuilder->setMainElement(dessertMainElement);
 
-        std::cout << "Would you like any sides with your meal? (Y/N)" << std::endl
-                  << std::endl;
+        // std::cout << "Would you like any sides with your meal? (Y/N)" << std::endl
+        //           << std::endl;
+        // char sidesChoice = ' ';
+        // cin >> sidesChoice;
         char sidesChoice = ' ';
-        cin >> sidesChoice;
+        do
+        {
+            std::cout << "Would you like any sides with your meal? (Y/N)" << std::endl
+                      << std::endl;
+            cin >> sidesChoice;
+            if (sidesChoice != 'Y' && sidesChoice != 'y' && sidesChoice != 'N' && sidesChoice != 'n')
+            {
+                std::cout << "Invalid choice. Please enter Y or N." << std::endl;
+                cin.clear();                                                   // clear the error flag
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
+            }
+        } while (sidesChoice != 'Y' && sidesChoice != 'y' && sidesChoice != 'N' && sidesChoice != 'n');
 
         dessertBuilder->setSideChoice(sidesChoice);
 
         if (sidesChoice == 'Y' || sidesChoice == 'y')
         {
+            // std::cout << "What side would you like? :" << std::endl
+            //           << std::endl;
+            // dessertMenu->printSideItemsList();
+
+            // int sidesElementChoice;
+            // cin >> sidesElementChoice;
+
+            // dessertBuilder->setSideElement(sidesElementChoice);
             std::cout << "What side would you like? :" << std::endl
                       << std::endl;
             dessertMenu->printSideItemsList();
 
             int sidesElementChoice;
-            cin >> sidesElementChoice;
+            do
+            {
+                cin >> sidesElementChoice;
+                if (sidesElementChoice < 1 || sidesElementChoice > 3)
+                {
+                    std::cout << "Invalid choice. Please choose a number between 1 and 3." << std::endl;
+                    cin.clear();                                                   // clear the error flag
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
+                }
+            } while (sidesElementChoice < 1 || sidesElementChoice > 3);
 
             dessertBuilder->setSideElement(sidesElementChoice);
         }
 
-        std::cout << "Would you like a sauce with your meal? (Y/N)" << std::endl
-                  << std::endl;
+        // std::cout << "Would you like a sauce with your meal? (Y/N)" << std::endl
+        //           << std::endl;
+        // char sauceChoice = ' ';
+        // cin >> sauceChoice;
         char sauceChoice = ' ';
-        cin >> sauceChoice;
+        do
+        {
+            std::cout << "Would you like a sauce with your meal? (Y/N)" << std::endl
+                      << std::endl;
+            cin >> sauceChoice;
+            if (sauceChoice != 'Y' && sauceChoice != 'y' && sauceChoice != 'N' && sauceChoice != 'n')
+            {
+                std::cout << "Invalid choice. Please enter Y or N." << std::endl;
+                cin.clear();                                                   // clear the error flag
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
+            }
+        } while (sauceChoice != 'Y' && sauceChoice != 'y' && sauceChoice != 'N' && sauceChoice != 'n');
 
         dessertBuilder->setSauceChoice(sauceChoice);
 
         if (sauceChoice == 'Y' || sauceChoice == 'y')
         {
+            // std::cout << "What sauce would you like? :" << std::endl
+            //           << std::endl;
+            // dessertMenu->printSauceItemsList();
+
+            // int sauceElementChoice;
+            // cin >> sauceElementChoice;
+
+            // dessertBuilder->setSauceElement(sauceElementChoice);
             std::cout << "What sauce would you like? :" << std::endl
                       << std::endl;
             dessertMenu->printSauceItemsList();
 
             int sauceElementChoice;
-            cin >> sauceElementChoice;
+            do
+            {
+                cin >> sauceElementChoice;
+                if (sauceElementChoice < 1 || sauceElementChoice > 3)
+                {
+                    std::cout << "Invalid choice. Please choose a number between 1 and 3." << std::endl;
+                    cin.clear();                                                   // clear the error flag
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
+                }
+            } while (sauceElementChoice < 1 || sauceElementChoice > 3);
 
             dessertBuilder->setSauceElement(sauceElementChoice);
         }

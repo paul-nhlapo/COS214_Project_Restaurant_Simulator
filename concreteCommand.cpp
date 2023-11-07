@@ -1,6 +1,7 @@
 #include "concreteCommand.h"
 #include <string>
 #include <vector>
+#include <limits>
 using namespace std;
 
 concreteCommand::concreteCommand::concreteCommand(maitreD *md, Floor *f, customerFactory *cf, OrderFactory *of)
@@ -71,20 +72,51 @@ Customer *concreteCommand::produceCustomer(char group)
 
 void concreteCommand::seatCustomer(Customer *c)
 {
+    // cout << "Would you like to reserve a table? " << endl;
+    // cout << "Y or N";
+    // cout << endl;
+    // char response;
+    // cin >> response;
+    // if (response == 'y' || response == 'Y')
+    // {
+    //     int _x;
+    //     int _y;
+    //     cout << "Choose your location: " << endl;
+    //     cout << "Row: 1, 2, 3, 4: " << endl;
+    //     cin >> _x;
+    //     cout << "Isle: 1, 2, 3, 4: " << endl;
+    //     cin >> _y;
+    //     c->makeReservation(_x - 1, _y - 1, md);
+    //     md->seat(c);
+    // }
     cout << "Would you like to reserve a table? " << endl;
-    cout << "Y or N";
-    cout << endl;
+    cout << "Y or N" << endl;
     char response;
-    cin >> response;
-    if (response == 'y' || response == 'Y')
+    while (!(cin >> response) || (toupper(response) != 'Y' && toupper(response) != 'N'))
+    {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input. Please enter Y for yes or N for no: " << endl;
+    }
+    if (toupper(response) == 'Y')
     {
         int _x;
         int _y;
         cout << "Choose your location: " << endl;
         cout << "Row: 1, 2, 3, 4: " << endl;
-        cin >> _x;
+        while (!(cin >> _x) || (_x < 1 || _x > 4))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number between 1 and 4: " << endl;
+        }
         cout << "Isle: 1, 2, 3, 4: " << endl;
-        cin >> _y;
+        while (!(cin >> _y) || (_y < 1 || _y > 4))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number between 1 and 4: " << endl;
+        }
         c->makeReservation(_x - 1, _y - 1, md);
         md->seat(c);
     }
@@ -104,20 +136,72 @@ void concreteCommand::seatMultipleCustomers(int x, int y, Customer *c)
 
 pair<int, int> concreteCommand::reserveGroupTable()
 {
+    //     cout << "Would you like to reserve a table? " << endl;
+    //     cout << "Y or N";
+    //     cout << endl;
+    //     char response;
+    //     cin >> response;
+    //     if (response == 'y' || response == 'Y')
+    //     {
+    //         int x;
+    //         int y;
+    //         cout << "Choose your location: " << endl;
+    //         cout << "Row: 1, 2, 3, 4: " << endl;
+    //         cin >> x;
+    //         cout << "Isle: 1, 2, 3, 4: " << endl;
+    //         cin >> y;
+    //         x -= 1;
+    //         y -= 1;
+    //         if (md->reserve(x, y))
+    //         {
+    //             pair<int, int> result;
+    //             result.first = x;
+    //             result.second = y;
+    //             return result;
+    //         }
+    //         else
+    //         {
+    //             cout << "Table not available" << endl;
+    //             cout << "The next available table will allocated to you" << endl;
+    //             pair<int, int> result = md->findNext();
+    //             return result;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         cout << "The next available table will allocated to you" << endl;
+    //         pair<int, int> result = md->findNext();
+    //         return result;
+    //     }
+    // }
     cout << "Would you like to reserve a table? " << endl;
-    cout << "Y or N";
-    cout << endl;
+    cout << "Y or N" << endl;
     char response;
-    cin >> response;
-    if (response == 'y' || response == 'Y')
+    while (!(cin >> response) || (toupper(response) != 'Y' && toupper(response) != 'N'))
+    {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input. Please enter Y for yes or N for no: " << endl;
+    }
+    if (toupper(response) == 'Y')
     {
         int x;
         int y;
         cout << "Choose your location: " << endl;
         cout << "Row: 1, 2, 3, 4: " << endl;
-        cin >> x;
+        while (!(cin >> x) || (x < 1 || x > 4))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number between 1 and 4: " << endl;
+        }
         cout << "Isle: 1, 2, 3, 4: " << endl;
-        cin >> y;
+        while (!(cin >> y) || (y < 1 || y > 4))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number between 1 and 4: " << endl;
+        }
         x -= 1;
         y -= 1;
         if (md->reserve(x, y))
