@@ -12,6 +12,7 @@
 #include "PaymentMethod.h"
 #include "Cash.h"
 #include "CreditCard.h"
+#include "MealProduct.h"
 using namespace std;
 
 class Waiter;
@@ -22,6 +23,7 @@ public:
     Waiter *myWaiter;
     vector<Customer *> customers;
     vector<Order_ *> order;
+    vector<Meal *> meals;
     // vector<Meal> Meals;
     int tableID;
     char tableGroup;

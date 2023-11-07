@@ -18,4 +18,5 @@ public:
     float monitor();
     void process(Table *t);
     void visitTable(Table *table);
+    void receiveNotification(Staff *senderChef){};
 };

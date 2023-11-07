@@ -2,13 +2,19 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include <limits>
 using namespace std;
 
 UI::UI(concreteCommand *c, Floor *f)
 {
     this->c1 = c;
     mainFloor = f;
+    this->md = this->c1->md;
+    cm1 = new CocktailMixer();
+    b1 = new Bartender();
+    b1->setBuilder(cm1);
+    bar_ = new Bar();
+    bar_->setBarTender(b1);
+    
 }
 
 UI::~UI()
@@ -23,7 +29,12 @@ void UI::addCustomer()
     cout << "2. Group" << endl;
     cout << endl;
     int size;
-    cin >> size;
+
+    if (!(cin >> size))
+    {
+        cout << "Input is not a number. Try again." << endl;
+        cin >> size;
+    }
     if (size == 1)
     {
         Customer *single = c1->produceCustomer('!');
@@ -36,35 +47,34 @@ void UI::addCustomer()
             cout << "Enter your group's size: " << endl;
             int gSize;
             cin >> gSize;
-            if (gSize < 2 || gSize > 150)
-            {
-                cout << "\033[1;31mInvalid group size. We only accommodate groups of 2 to 150. Moving forward as single. \033[0m" << endl;
-                Customer *single = c1->produceCustomer('!');
 
-                // c1->seatCustomer(single);
-            }
-            else
+            vector<Customer *> tempVec;
+            int x;
+            int y;
+            pair<int, int> option = c1->reserveGroupTable();
+            x = option.first;
+            y = option.second;
+            for (int i = 0; i < gSize; i++)
             {
-                vector<Customer *> tempVec;
-                int x;
-                int y;
-                pair<int, int> option = c1->reserveGroupTable();
-                x = option.first;
-                y = option.second;
-                for (int i = 0; i < gSize; i++)
-                {
-                    tempVec.push_back(c1->produceCustomer(c1->getGroupID()));
-                }
-                cout << "x " << x << " y " << y << endl;
-                int counter = 1;
-                for (Customer *customer : tempVec)
-                {
-                    cout << "Seating customer: " << counter << endl;
-                    c1->seatMultipleCustomers(x, y, customer);
-                    counter++;
-                }
-                c1->setGroupID();
+                tempVec.push_back(c1->produceCustomer(c1->getGroupID()));
             }
+            cout << "x " << x << " y " << y << endl;
+            int counter = 1;
+            for (Customer *customer : tempVec)
+            {
+                cout << "Seating customer: " << counter << endl;
+                c1->seatMultipleCustomers(x, y, customer);
+                counter++;
+            }
+            c1->setGroupID();
+        }
+
+        else
+        {
+            if (size != 1 || size != 2)
+                cout << "Invalid input, moving forward as single" << endl;
+            Customer *single = c1->produceCustomer('!');
+            return;
         }
     }
 }
@@ -76,34 +86,45 @@ void UI::order()
 
 void UI::additionLoop()
 {
-
-    int choice = 1;
-    int customerCount = 0; // add a counter for the number of customers
-    while (choice == 1)
+    int choice;
+    do
     {
         addCustomer();
         this->mainFloor->printFloor();
-        customerCount++; // increment the counter each time a customer is added
 
-        // if 2 customers have been added, break the loop
-        if (customerCount >= 1)
-        {
-            choice = 2; // set choice to 2 to stop the loop
+        std::cout << "Would you like to add another customer? 1 for yes, 2 for no: " << endl;
+        std::cin >> choice;
+    } while (choice == 1);
 
-            std::cout << "Would you like to add another customer? 1 for yes, 2 for no: " << endl;
-            if (!(std::cin >> choice) || (choice != 1 && choice != 2))
-            {
-                // clear the error state of cin
-                std::cin.clear();
-                // ignore the bad input
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::cout << "Invalid input. Defaulting to no." << std::endl;
-                choice = 2; // set default value
-            }
-            break; // exit the loop
-        }
+    char continueOrdering = 'Y';
+    while (continueOrdering == 'Y' || continueOrdering == 'y')
+    {
+        this->mainFloor->options();
+        order();
+        cout << "Would you like to continue ordering? (Y/N): ";
+        cin >> continueOrdering;
     }
 
-    this->mainFloor->options();
-    order();
+    cout << endl;
+    cout << "Would you like to order a Cocktail? \n 1. Yes \n 2. No" << endl;
+    int response;
+    cin >> response;
+    if (response == 1)
+    {
+        char continueOrderingCocktail = 'Y';
+        while (continueOrderingCocktail == 'Y' || continueOrderingCocktail == 'y')
+        {
+            this->mainFloor->options();
+            if (c1->verify())
+            {
+                this->bar_->placeCocktailOrder();
+                cout << "Would you like to order another Cocktail? (Y/N): ";
+                cin >> continueOrderingCocktail;
+            }
+            else
+            {
+                cout << "That wasn't an option, perhaps you've had too many" << endl;
+            }
+        }
+    }
 }

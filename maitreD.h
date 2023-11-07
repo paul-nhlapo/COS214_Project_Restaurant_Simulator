@@ -21,4 +21,5 @@ public:
     pair<int, int> findNext();
     bool reserve(int x, int y);
     void visitTable(Table *table);
+    void receiveNotification(Staff *senderChef){};
 };

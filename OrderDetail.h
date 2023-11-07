@@ -4,7 +4,7 @@
 
 #include "Order.h"
 
-class OrderDetail : public Order
+class OrderDetail : public Order_
 {
 
 public:

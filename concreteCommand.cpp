@@ -1,7 +1,6 @@
 #include "concreteCommand.h"
 #include <string>
 #include <vector>
-#include <limits>
 using namespace std;
 
 concreteCommand::concreteCommand::concreteCommand(maitreD *md, Floor *f, customerFactory *cf, OrderFactory *of)
@@ -10,6 +9,41 @@ concreteCommand::concreteCommand::concreteCommand(maitreD *md, Floor *f, custome
     this->md = md;
     this->cf = cf;
     this->of = of;
+
+    kitchen = new Kitchen();
+
+    headChefCreator = new HeadChefCreator();
+    starterChefCreator = new StarterChefCreator();
+    mainChefCreator = new MainChefCreator();
+    dessertChefCreator = new DessertChefCreator();
+
+    Chef *xheadChef = headChefCreator->createChef("Head Chef", kitchen);
+    this->headChef = dynamic_cast<HeadChef *>(xheadChef);
+
+    Chef *xstarterChef = starterChefCreator->createChef("Starter Chef", kitchen);
+    this->starterChef = dynamic_cast<StarterChef *>(xstarterChef);
+
+    Chef *xmainChef = mainChefCreator->createChef("Main Chef", kitchen);
+    this->mainChef = dynamic_cast<MainChef *>(xmainChef);
+
+    Chef *xdessertChef = dessertChefCreator->createChef("Dessert Chef", kitchen);
+    this->dessertChef = dynamic_cast<DessertChef *>(xdessertChef);
+
+    starterChef->headChef = headChef;
+    mainChef->headChef = headChef;
+    dessertChef->headChef = headChef;
+
+    headChef->setNextChef(starterChef);
+    starterChef->setNextChef(mainChef);
+    mainChef->setNextChef(dessertChef);
+
+    for (int i = 0; i < floor->numRows; i++)
+    {
+        for (int j = 0; j < floor->numCols; j++)
+        {
+            this->kitchen->addStaff(floor->getTable(i, j)->myWaiter);
+        }
+    }
 }
 
 concreteCommand::~concreteCommand()
@@ -41,50 +75,16 @@ void concreteCommand::seatCustomer(Customer *c)
     cout << "Y or N";
     cout << endl;
     char response;
-    while (true) // loop until valid input is received
-    {
-        cin >> response;
-        if (response == 'y' || response == 'Y' || response == 'n' || response == 'N')
-            break; // exit the loop if valid input is received
-        else
-        {
-            cout << "Invalid input. Please enter" << endl;
-            cout << " Y or N: " << endl;
-            cin.clear();                                         // clear the error flag on cin
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard the rest of the line
-        }
-    }
+    cin >> response;
     if (response == 'y' || response == 'Y')
     {
         int _x;
         int _y;
         cout << "Choose your location: " << endl;
         cout << "Row: 1, 2, 3, 4: " << endl;
-        while (true) // loop until valid input is received
-        {
-            cin >> _x;
-            if (_x >= 1 && _x <= 4)
-                break; // exit the loop if valid input is received
-            else
-            {
-                cout << "Invalid input.\nPlease enter a number between 1 and 4:\n";
-                cin.clear();                                                   // clear the error flag on cin
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
-            }
-        }
+        cin >> _x;
         cout << "Isle: 1, 2, 3, 4: " << endl;
-        while (true) // loop until valid input is received
-        {
-            cin >> _y;
-            if (_y >= 1 && _y <= 4)
-                break; // exit the loop if valid input is received
-            else
-            {
-                cout << "Invalid input. \nPlease enter a number between 1 and 4:\n ";
-                cin.clear();                                                   // clear the error flag on cin
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard the rest of the line
-            }
-        }
+        cin >> _y;
         c->makeReservation(_x - 1, _y - 1, md);
         md->seat(c);
     }
@@ -164,16 +164,70 @@ void concreteCommand::startOrdering()
     cin >> y;
     x--;
     y--;
-    char userChoice;
-    do
+    if (x >= 0 && y >= 0 && x < this->floor->numRows && y < this->floor->numCols)
     {
-        this->floor->getTable(x, y)->order = this->of->getOrder(this->floor->getTable(x, y));
-        cout << "Do you want to continue ordering? (y/n): ";
-        cin >> userChoice;
-    } while (userChoice == 'y' || userChoice == 'Y');
-    this->floor->getTable(x, y)->placedOrder = true;
-    this->floor->getTable(x, y)->bill = this->floor->getTable(x, y)->getBill();
-    this->floor->getTable(x, y)->sendOrder(this->floor->getTable(x, y)->myWaiter);
-    this->floor->getTable(x, y)->myWaiter->printOrders();
-    this->floor->getTable(x, y)->askForTheCheque(this->floor->getTable(x, y)->myWaiter);
+        char userChoice;
+        if (this->floor->getTable(x, y)->hasCustomer)
+        {
+            do
+            {
+                this->floor->getTable(x, y)->order = this->of->getOrder(this->floor->getTable(x, y));
+                cout << "Do you want to continue ordering? (y/n): ";
+                cin >> userChoice;
+            } while (userChoice == 'y' || userChoice == 'Y');
+            this->floor->getTable(x, y)->placedOrder = true;
+            this->floor->getTable(x, y)->bill = this->floor->getTable(x, y)->getBill();
+            this->floor->getTable(x, y)->sendOrder(this->floor->getTable(x, y)->myWaiter);
+            this->floor->getTable(x, y)->myWaiter->printOrders();
+            for (int i = 0; i < this->floor->getTable(x, y)->myWaiter->orders.size(); i++)
+            {
+                this->kitchen->sendToKitchen(this->floor->getTable(x, y)->myWaiter->orders[i], this->headChef);
+            }
+            // for (int j = 0; j < this->floor->getTable(x, y)->myWaiter->meals.size(); j++)
+            // {
+            //     this->floor->getTable(x, y)->myWaiter->deliverMeal(this->floor->getTable(x, y)->myWaiter->meals[j]);
+            // }
+            this->floor->getTable(x, y)->askForTheCheque(this->floor->getTable(x, y)->myWaiter);
+            return;
+        }
+        else
+        {
+            cout << "This table has no customers, please try again" << endl;
+            startOrdering();
+        }
+    }
+    else
+    {
+        cout << "Invalid selection" << endl;
+    }
+}
+
+bool concreteCommand::verify()
+{
+    int x;
+    int y;
+    cout << "Choose your location: " << endl;
+    cout << "Row: 1, 2, 3, 4: " << endl;
+    cin >> x;
+    cout << "Isle: 1, 2, 3, 4: " << endl;
+    cin >> y;
+
+    x--;
+    y--;
+    if (x >= 0 && y >= 0 && x < this->floor->numRows && y < this->floor->numCols)
+    {
+        char userChoice;
+        if (this->floor->getTable(x, y)->hasCustomer)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
 }

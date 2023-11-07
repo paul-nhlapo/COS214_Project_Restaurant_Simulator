@@ -5,9 +5,9 @@
 
 class MainOrder : public Order
 {
-    public:
-        MainOrder(std::string mainElement, std::string cookingMethod, std::string side, std::string sauce);
-        std::string getOrderType();
+public:
+    MainOrder(std::string mainElement, std::string cookingMethod, std::string side, std::string sauce);
+    std::string getOrderType();
 };
 
 #endif

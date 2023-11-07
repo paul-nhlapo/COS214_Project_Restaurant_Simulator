@@ -25,6 +25,7 @@ Floor::Floor(int numRows, int numCols)
             for (int y = 0; y < numCols; y++)
             {
                 tables[x][y].tableID = ids;
+                tables[x][y].myWaiter->id = ids;
                 ids++;
             }
         }

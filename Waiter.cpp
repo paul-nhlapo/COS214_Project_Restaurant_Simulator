@@ -4,6 +4,12 @@
 Waiter::Waiter()
 {
     this->balance = 0.0;
+    this->hasUpdate = false;
+}
+
+Waiter::Waiter(int i)
+{
+    this->id = i;
 }
 
 void Waiter::process(Table *t)
@@ -26,14 +32,24 @@ void Waiter::printOrders()
     cout << "Waiter's orders:" << endl;
     for (Order_ *order : orders)
     {
-        cout << "chef Choice : " << order->getMenuChoice();
-        cout << " \nMain Element: " << order->getMainElement();
-        cout << " \nmainPrepStrategy:  " << order->getMainPrepStrategy();
-        cout << " \nsauceChoice: " << order->getSauceElement();
-        cout << " \nsidesChoice: " << order->getSidesElement();
-        cout << "\n-side prep strat : " << order->getSidePrepStrategy() << endl;
-        cout << endl;
+        cout << "Main Element: " << order->getMainElement() << " mainPrepStrategy:  " << order->mainPrepStrategy << " mainPrepStrategy string:  " << order->getMainPrepStrategy() << " sauceChoice: " << order->sauceElement << " sidesChoice: " << order->sidesElement << endl;
     }
+}
+
+void Waiter::deliverMeal(Meal *m)
+{
+    std::cout << "\nWaiter says that your meal: \n";
+    std::cout << " - " << m->getMealType() << " " << m->getMainElement() << ", ";
+    std::cout << "Prepeared by " << m->getMainPrepStrategy() << "\n";
+    if (m->getSidesElement() != "")
+    {
+        std::cout << " - With side " << m->getSidesElement() << ", ";
+        std::cout << "Prepeared by " << m->getSidePrepStrategy() << "\n";
+    }
+    if (m->getSauceElement() != "")
+        std::cout << " - With sauce " << m->getSauceElement() << "\n";
+
+    std::cout << "Is ready\n";
 }
 
 void Waiter::receiveBill(Table *table)
