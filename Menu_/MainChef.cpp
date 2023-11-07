@@ -41,7 +41,7 @@ void MainChef::prepareMeal(Order_ *order)
     if (order->getMenuChoice() == "Main")
     {
         this->changeChefState();
-        std::cout << order->getMainPrepStrategy() <<" is prep strat " << order->getMenuChoice()<< std::endl;
+        std::cout <<"Main chef is preparing" << order->getMainElement()<< std::endl;
 
         // Strategies
         if (order->getMainPrepStrategy() == "Grilled")

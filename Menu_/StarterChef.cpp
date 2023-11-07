@@ -23,7 +23,6 @@ void StarterChef::sendOrder()
 
 void StarterChef::sendMeal(Meal *meal)
 {
-    std::cout << "a11aa \n" << meal->getMainElement() << "---///////////";
     headChef->receiveMeal(meal);
 }
 
@@ -42,7 +41,7 @@ void StarterChef::prepareMeal(Order_ *order)
     if (order->getMenuChoice() == "Starter")
     {
         this->changeChefState();
-        std::cout << order->getMainPrepStrategy() <<" is prep strat " << order->getMenuChoice()<< std::endl;
+        std::cout <<"Starter chef is preparing" << order->getMainElement()<< std::endl;
 
         // Strategies
         if (order->getMainPrepStrategy() == "Grilled")

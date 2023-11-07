@@ -41,7 +41,7 @@ int main()
 
     // Create individual Chefs
     std::cout << "*** Creating Concrete Chefs ***" << std::endl;
-    
+
     Chef *xheadChef = headChefCreator->createChef("Head Chef", kitchen);
     HeadChef *headChef = dynamic_cast<HeadChef *>(xheadChef);
 
@@ -55,6 +55,8 @@ int main()
     DessertChef *dessertChef = dynamic_cast<DessertChef *>(xdessertChef);
 
     starterChef->headChef = headChef;
+    mainChef->headChef = headChef;
+    dessertChef->headChef = headChef;
 
     std::cout << "*** Concrete Chefs Created ***" << std::endl
               << std::endl;

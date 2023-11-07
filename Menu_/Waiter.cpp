@@ -449,17 +449,21 @@ void Waiter::printOrders()
     cout << "Waiter's orders:" << endl;
     for (Order_ *order : orders)
     {
-        cout << "Main Element: " << order->getMainElement() << " mainPrepStrategy:  " << order->mainPrepStrategy  << " GETMAINPREPSTARTR:  " << order->getMainPrepStrategy() << " sauceChoice: " << order->sauceElement << " sidesChoice: " << order->sidesElement << endl;
+        cout << "Main Element: " << order->getMainElement() << " mainPrepStrategy:  " << order->mainPrepStrategy  << " mainPrepStrategy string:  " << order->getMainPrepStrategy() << " sauceChoice: " << order->sauceElement << " sidesChoice: " << order->sidesElement << endl;
     }
 
 }
 
  void Waiter::deliverMeal(Meal* m){
-    std::cout << "Waiter says that a meal is ready:\n";
-    std::cout << "Main element : " << m->getMainElement() << "\n";
-        std::cout << "main prep strategy " << m->getMainPrepStrategy() << "\n";
-        std::cout << "Side Element " << m->getSidesElement() << "\n";
-        std::cout << "side prep strategy " << m->getSidePrepStrategy() << "\n";
-        std::cout << "sauce element " << m->getSauceElement() << "\n";
-        std::cout << "meal type " << m->getMealType() << "\n";
+    std::cout << "\nWaiter says that your meal: \n";
+    std::cout << " - " <<  m->getMealType() << " " << m->getMainElement() << ", ";
+        std::cout << "Prepeared by " << m->getMainPrepStrategy() << "\n";
+        if(m->getSidesElement() != ""){
+            std::cout << " - With side " << m->getSidesElement() << ", ";
+            std::cout << "Prepeared by " << m->getSidePrepStrategy() << "\n";
+        }
+        if(m->getSauceElement() != "")
+            std::cout << " - With sauce " << m->getSauceElement() << "\n";
+
+        std::cout << "Is ready\n";
  }

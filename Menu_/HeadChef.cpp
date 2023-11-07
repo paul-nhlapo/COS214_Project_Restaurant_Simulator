@@ -31,7 +31,7 @@ void HeadChef::receiveMeal(Meal *meal)
     {
         //mainMeals.push_back(meal);
         // kitchen->notifyMealReady();
-        std::cout << "recmeal2 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
+        //std::cout << "recmeal2 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
         kitchen->notifyMealReady(meal);
     }
 
@@ -39,7 +39,7 @@ void HeadChef::receiveMeal(Meal *meal)
     {
         //dessertMeals.push_back(meal);
         // kitchen->notifyMealReady();
-        std::cout << "recmeal2 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
+        //std::cout << "recmeal2 " << meal->getMealType() << " " << meal->getMainElement() << std::endl;
         kitchen->notifyMealReady(meal);
     }
 }
