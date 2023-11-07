@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <limits>
 using namespace std;
 
 UI::UI(concreteCommand *c, Floor *f)
@@ -14,7 +15,6 @@ UI::UI(concreteCommand *c, Floor *f)
     b1->setBuilder(cm1);
     bar_ = new Bar();
     bar_->setBarTender(b1);
-    
 }
 
 UI::~UI()
@@ -30,52 +30,95 @@ void UI::addCustomer()
     cout << endl;
     int size;
 
-    if (!(cin >> size))
+    while (!(cin >> size) || (size != 1 && size != 2))
     {
-        cout << "Input is not a number. Try again." << endl;
-        cin >> size;
+        cin.clear();                                         // clear the error flags
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignore the rest of the line
+        cout << "Invalid input. Please enter 1 for Single or 2 for Group." << endl;
     }
+    // if (size == 1)
+    // {
+    //     Customer *single = c1->produceCustomer('!');
+    //     // c1->seatCustomer(single);
+    // }
+    // else
+    // {
+    //     if (size == 2)
+    //     {
+    //         cout << "Enter your group's size: " << endl;
+    //         int gSize;
+    //         cin >> gSize;
+
+    //         vector<Customer *> tempVec;
+    //         int x;
+    //         int y;
+    //         pair<int, int> option = c1->reserveGroupTable();
+    //         x = option.first;
+    //         y = option.second;
+    //         for (int i = 0; i < gSize; i++)
+    //         {
+    //             tempVec.push_back(c1->produceCustomer(c1->getGroupID()));
+    //         }
+    //         cout << "x " << x << " y " << y << endl;
+    //         int counter = 1;
+    //         for (Customer *customer : tempVec)
+    //         {
+    //             cout << "Seating customer: " << counter << endl;
+    //             c1->seatMultipleCustomers(x, y, customer);
+    //             counter++;
+    //         }
+    //         c1->setGroupID();
+    //     }
+
+    //     else
+    //     {
+    //         if (size != 1 || size != 2)
+    //             cout << "Invalid input, moving forward as single" << endl;
+    //         Customer *single = c1->produceCustomer('!');
+    //         return;
+    //     }
+    // }
     if (size == 1)
     {
         Customer *single = c1->produceCustomer('!');
         // c1->seatCustomer(single);
     }
+    else if (size == 2)
+    {
+        cout << "Enter your group's size: " << endl;
+        int gSize;
+        while (!(cin >> gSize) || gSize <= 0)
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a positive number." << endl;
+        }
+
+        vector<Customer *> tempVec;
+        int x;
+        int y;
+        pair<int, int> option = c1->reserveGroupTable();
+        x = option.first;
+        y = option.second;
+        for (int i = 0; i < gSize; i++)
+        {
+            tempVec.push_back(c1->produceCustomer(c1->getGroupID()));
+        }
+        cout << "x " << x << " y " << y << endl;
+        int counter = 1;
+        for (Customer *customer : tempVec)
+        {
+            cout << "Seating customer: " << counter << endl;
+            c1->seatMultipleCustomers(x, y, customer);
+            counter++;
+        }
+        c1->setGroupID();
+    }
     else
     {
-        if (size == 2)
-        {
-            cout << "Enter your group's size: " << endl;
-            int gSize;
-            cin >> gSize;
-
-            vector<Customer *> tempVec;
-            int x;
-            int y;
-            pair<int, int> option = c1->reserveGroupTable();
-            x = option.first;
-            y = option.second;
-            for (int i = 0; i < gSize; i++)
-            {
-                tempVec.push_back(c1->produceCustomer(c1->getGroupID()));
-            }
-            cout << "x " << x << " y " << y << endl;
-            int counter = 1;
-            for (Customer *customer : tempVec)
-            {
-                cout << "Seating customer: " << counter << endl;
-                c1->seatMultipleCustomers(x, y, customer);
-                counter++;
-            }
-            c1->setGroupID();
-        }
-
-        else
-        {
-            if (size != 1 || size != 2)
-                cout << "Invalid input, moving forward as single" << endl;
-            Customer *single = c1->produceCustomer('!');
-            return;
-        }
+        cout << "Invalid input, moving forward as single" << endl;
+        Customer *single = c1->produceCustomer('!');
+        // c1->seatCustomer(single);
     }
 }
 
